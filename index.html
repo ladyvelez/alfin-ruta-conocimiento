@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFIN - La Ruta del Conocimiento</title>
+    <meta name="description" content="Proyecto educativo sobre Alfabetización Informacional y Gestión del Conocimiento Organizacional">
+    <meta name="author" content="Vélez Sánchez Lady Liliana & Loor Romero George Adrián">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ec4899',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-bg { background: linear-gradient(135deg, #fdf2f8, #faf5ff, #ecfeff); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(135deg, #ec4899, #8b5cf6); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .hero-image { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .blob { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation: morph 8s ease-in-out infinite; }
+        @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; } }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">A</span>
+                    </div>
+                    <span class="text-xl font-bold gradient-text">ALFIN</span>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-link text-pink-500 font-medium">Inicio</a>
+                    <a href="alfin.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">¿Qué es ALFIN?</a>
+                    <a href="caso.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">Casos de Estudio</a>
+                    <a href="recursos.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">Recursos</a>
+                    <a href="timeline.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">Línea del Tiempo</a>
+                    <a href="bibliografia.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">Bibliografía</a>
+                    <a href="infografia.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">📥 Infografía</a>
+                    <a href="como-se-hizo.html" class="nav-link text-gray-700 font-medium hover:text-pink-500 transition">Cómo se hizo</a>
+                </div>
+
+                <button id="menuBtn" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+                <div class="flex flex-col gap-4">
+                    <a href="index.html" class="text-pink-500 font-medium">Inicio</a>
+                    <a href="alfin.html" class="text-gray-700 font-medium hover:text-pink-500">¿Qué es ALFIN?</a>
+                    <a href="caso.html" class="text-gray-700 font-medium hover:text-pink-500">Casos de Estudio</a>
+                    <a href="recursos.html" class="text-gray-700 font-medium hover:text-pink-500">Recursos</a>
+                    <a href="timeline.html" class="text-gray-700 font-medium hover:text-pink-500">Línea del Tiempo</a>
+                    <a href="bibliografia.html" class="text-gray-700 font-medium hover:text-pink-500">Bibliografía</a>
+                    <a href="infografia.html" class="text-gray-700 font-medium hover:text-pink-500">📥 Infografía</a>
+                    <a href="como-se-hizo.html" class="text-gray-700 font-medium hover:text-pink-500">Cómo se hizo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md mb-6">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-600">Alfabetización Informacional</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight mb-6">
+                        La Ruta del
+                        <span class="gradient-text block">Conocimiento</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Descubre cómo las competencias ALFIN transforman la manera en que las organizaciones 
+                        gestionan, comparten y aprovechan el conocimiento para alcanzar el éxito.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-12">
+                        <a href="alfin.html" class="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                            Explorar ALFIN →
+                        </a>
+                        <a href="infografia.html" class="px-8 py-4 bg-white text-gray-700 font-semibold rounded-full shadow-lg hover:shadow-xl transition border border-gray-200 hover:border-pink-300">
+                            📥 Descargar Infografía
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">85%</div>
+                            <div class="text-sm text-gray-500">Mejora en productividad</div>
+                        </div>
+                        <div class="text-center border-l border-r border-gray-200">
+                            <div class="text-3xl font-bold gradient-text">60%</div>
+                            <div class="text-sm text-gray-500">Menos tiempo buscando</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">100%</div>
+                            <div class="text-sm text-gray-500">Decisiones informadas</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-duration="1000" class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-200 to-purple-200 blob opacity-60 blur-3xl"></div>
+                    <img src="assets/hero.png" alt="Conocimiento e Información" class="relative hero-image rounded-3xl shadow-2xl w-full max-w-lg mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Preview -->
+    <section class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-semibold mb-4">Explora el Proyecto</span>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">¿Qué encontrarás aquí?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Un recorrido completo por las competencias ALFIN y su impacto en la gestión del conocimiento organizacional</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="alfin.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
+                        <img src="assets/search.png" alt="ALFIN" class="w-10 h-10 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">¿Qué es ALFIN?</h3>
+                    <p class="text-gray-600 text-sm">Conoce las 6 competencias clave de la Alfabetización Informacional</p>
+                    <span class="inline-block mt-4 text-pink-500 font-medium text-sm">Explorar →</span>
+                </a>
+                
+                <a href="caso.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <img src="assets/success.png" alt="Caso" class="w-10 h-10 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Casos de Estudio</h3>
+                    <p class="text-gray-600 text-sm">3 casos reales con gráficos animados y videos educativos</p>
+                    <span class="inline-block mt-4 text-purple-500 font-medium text-sm">Ver casos →</span>
+                </a>
+                
+                <a href="timeline.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
+                        <img src="assets/timeline.png" alt="Timeline" class="w-10 h-10 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Línea del Tiempo</h3>
+                    <p class="text-gray-600 text-sm">Historia de ALFIN desde 1974 hasta la era de la IA</p>
+                    <span class="inline-block mt-4 text-cyan-500 font-medium text-sm">Explorar →</span>
+                </a>
+                
+                <a href="infografia.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                        <img src="assets/infografia.png" alt="Infografía" class="w-10 h-10 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">📥 Infografía</h3>
+                    <p class="text-gray-600 text-sm">Descarga gratis la infografía de las 6 competencias ALFIN</p>
+                    <span class="inline-block mt-4 text-amber-500 font-medium text-sm">Descargar →</span>
+                </a>
+            </div>
+            
+            <!-- More Links -->
+            <div class="grid md:grid-cols-3 gap-6 mt-6">
+                <a href="recursos.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">📚</div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Recursos</h3>
+                            <p class="text-gray-600 text-sm">Guías y enlaces externos</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="bibliografia.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-2xl">📖</div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Bibliografía</h3>
+                            <p class="text-gray-600 text-sm">Referencias APA completas</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="como-se-hizo.html" class="card-hover bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="700">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center text-2xl">⚙️</div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Cómo se hizo</h3>
+                            <p class="text-gray-600 text-sm">Proceso de desarrollo</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-6 bg-white relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="assets/share.png" alt="Compartir Conocimiento" class="rounded-3xl shadow-xl w-full max-w-md mx-auto">
+                </div>
+                
+                <div data-aos="fade-left">
+                    <span class="inline-block px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold mb-4">Importancia</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">¿Por qué es importante ALFIN?</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        En la era de la información, saber buscar, evaluar y utilizar información de manera efectiva 
+                        es una competencia fundamental para el éxito personal y profesional.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-pink-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Toma de decisiones informada</h4>
+                                <p class="text-gray-600 text-sm">Accede a información confiable para decisiones estratégicas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Pensamiento crítico</h4>
+                                <p class="text-gray-600 text-sm">Evalúa fuentes y detecta desinformación</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Aprendizaje continuo</h4>
+                                <p class="text-gray-600 text-sm">Desarrolla habilidades para la vida</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="alfin.html" class="inline-block mt-8 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full hover:shadow-lg transition">
+                        Conocer más sobre ALFIN →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">A</span>
+                        </div>
+                        <span class="text-xl font-bold">ALFIN</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Proyecto educativo sobre Alfabetización Informacional y Gestión del Conocimiento.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Navegación</h4>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-gray-400 hover:text-white transition text-sm">Inicio</a>
+                        <a href="alfin.html" class="block text-gray-400 hover:text-white transition text-sm">¿Qué es ALFIN?</a>
+                        <a href="caso.html" class="block text-gray-400 hover:text-white transition text-sm">Casos de Estudio</a>
+                        <a href="timeline.html" class="block text-gray-400 hover:text-white transition text-sm">Línea del Tiempo</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Recursos</h4>
+                    <div class="space-y-2">
+                        <a href="recursos.html" class="block text-gray-400 hover:text-white transition text-sm">Guías y Artículos</a>
+                        <a href="bibliografia.html" class="block text-gray-400 hover:text-white transition text-sm">Bibliografía</a>
+                        <a href="infografia.html" class="block text-gray-400 hover:text-white transition text-sm">📥 Infografía</a>
+                        <a href="como-se-hizo.html" class="block text-gray-400 hover:text-white transition text-sm">Cómo se hizo</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Proyecto</h4>
+                    <p class="text-gray-400 text-sm mb-2">Crea para Aprender: La Ruta del Conocimiento</p>
+                    <p class="text-gray-400 text-sm">Diciembre 2025</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">© 2025 Proyecto Académico ALFIN</p>
+                <p class="text-gray-400 text-sm">Creado por <span class="text-pink-400 font-semibold">👩‍🎓 Vélez Sánchez Lady Liliana & Loor Romero George Adrián 👨‍🎓</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800 });
+        
+        // Mobile menu
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        
+        // Particles configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: ['#ec4899', '#8b5cf6', '#06b6d4'] },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true },
+                size: { value: 4, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ec4899', opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
+                modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
+            }
+        });
+    </script>
+</body>
+</html>
